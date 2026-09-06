@@ -5,7 +5,7 @@ export function defaultImages(lang: Language): Record<ImageSlot, ImageAsset> {
   const so = lang === 'so';
   const asset = (file: string, en: string, somali: string, position = '50% 50%'): ImageAsset => ({ src: `/images/${file}`, alt: so ? somali : en, position });
   return {
-    homeHero: asset('deeq-campaign-portrait.jpg', 'Deeq Afrika campaign portrait with the Somali flag', 'Sawirka ololaha Deeq Afrika iyo calanka Soomaaliya', '50% 24%'),
+    homeHero: asset('deeq-campaign-portrait-no-flag.png', 'Deeq Afrika campaign portrait', 'Sawirka ololaha Deeq Afrika', '50% 24%'),
     homeCommunity: asset('deeq-kids-united.jpg', 'Deeq Afrika with a young footballer and a youth team', 'Deeq Afrika oo la jooga ciyaaryahan yar iyo koox dhalinyaro ah', '50% 35%'),
     homeVision: asset('national-huddle.jpg', 'Somalia players gathered in a team huddle', 'Ciyaartoyda Soomaaliya oo isku duuban'),
     homeRegions: asset('technical-center-training.jpg', 'Concept illustration of training at a proposed regional technical centre', 'Sawir fikradeed tababbar ka socda xarun farsamo oo gobol oo la soo jeediyay'),

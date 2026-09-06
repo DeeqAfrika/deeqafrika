@@ -421,7 +421,7 @@ export const so: CampaignContent = {
       "Hoggaanka kubaddu wuxuu ka muuqdaa dadka, goobaha iyo waqtiyada ciyaarta qaabeeya. Maktabaddan waxaa lagu kordhin doonaa sawirrada ololaha, muuqaallada, waraysiyada iyo agabka la soo dejisan karo.",
     galleryTitle: "Sawirrada ololaha",
     gallery: [
-      { src: "/images/deeq-campaign-portrait.jpg", alt: "Sawirka ololaha Deeq M Afrika oo hor taagan calanka Soomaaliya", caption: "Xiriir Furan. Fursad Siman.", position: "50% 24%" },
+      { src: "/images/deeq-campaign-portrait-no-flag.png", alt: "Sawirka ololaha Deeq M Afrika", caption: "Xiriir Furan. Fursad Siman.", position: "50% 24%" },
       { src: "/images/deeq-kids-united.jpg", alt: "Deeq Afrika oo la jooga ciyaaryahan yar munaasabad bulsho", caption: "Garab-taagnaanta jiilka soo socda", position: "50% 35%" },
       { src: "/images/kids-match.jpg", alt: "Carruur ciyaaraysa kubadda cagta", caption: "Kubadda salka bulsho kasta", position: "50% 50%" },
       { src: "/images/national-anthem.jpg", alt: "Ciyaartoyda iyo shaqaalaha Soomaaliya oo u taagan heesta qaranka", caption: "Sharaf qaran iyo ujeeddo mideysan", position: "50% 50%" },

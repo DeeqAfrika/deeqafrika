@@ -421,7 +421,7 @@ export const en: CampaignContent = {
       "Football leadership is visible in the people, places and moments that shape the game. This library will grow with campaign photography, video, interviews and downloadable material.",
     galleryTitle: "Campaign photography",
     gallery: [
-      { src: "/images/deeq-campaign-portrait.jpg", alt: "Deeq M Afrika campaign portrait in front of the Somali flag", caption: "Xiriir Furan. Fursad Siman.", position: "50% 24%" },
+      { src: "/images/deeq-campaign-portrait-no-flag.png", alt: "Deeq M Afrika campaign portrait", caption: "Xiriir Furan. Fursad Siman.", position: "50% 24%" },
       { src: "/images/deeq-kids-united.jpg", alt: "Deeq Afrika with a young footballer at a community event", caption: "Standing with the next generation", position: "50% 35%" },
       { src: "/images/kids-match.jpg", alt: "Children playing a football match", caption: "Grassroots football in every community", position: "50% 50%" },
       { src: "/images/national-anthem.jpg", alt: "Somalia players and staff standing for the national anthem", caption: "National pride and shared purpose", position: "50% 50%" },
