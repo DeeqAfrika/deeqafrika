@@ -89,7 +89,7 @@ export async function HomePage({ copy }: { copy: CampaignContent }) {
           </div>
           <div className="hero-portrait">
             <CampaignImage
-              asset={copy.images.homeHero} — ${copy.brand.role}`}
+              asset={copy.images.homeHero}
               fill
               priority
               sizes="(max-width: 800px) 100vw, 48vw"
@@ -101,13 +101,7 @@ export async function HomePage({ copy }: { copy: CampaignContent }) {
           </div>
         </div>
         <div className="hero-ticker" aria-hidden="true">
-          <span>{copy.lang === "so" ? "DIB-U-HABAYN" : "REFORM"}</span>
-          <i />
-          <span>{copy.lang === "so" ? "HORUMAR" : "DEVELOPMENT"}</span>
-          <i />
-          <span>{copy.lang === "so" ? "MIDNIMO" : "UNITY"}</span>
-          <i />
-          <span>{copy.lang === "so" ? "SHARAFTA QARANKA" : "NATIONAL PRIDE"}</span>
+          {copy.home.ticker.map((item) => <span key={item}>{item}</span>)}
         </div>
       </section>
 

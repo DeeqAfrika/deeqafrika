@@ -2841,3 +2841,69 @@ ol {
     opacity: 1;
   }
 }
+
+/* Shared news and participation layouts. */
+.story-page{padding:5rem 0;background:var(--white)}
+.story-heading{max-width:980px;margin-bottom:3rem}
+.story-heading>.arrow-link{margin-bottom:3rem}
+.story-heading h1{font-size:clamp(2.6rem,5.5vw,5.5rem);margin:1rem 0 1.5rem;overflow-wrap:anywhere}
+.story-excerpt{font-size:clamp(1.1rem,1.7vw,1.45rem);line-height:1.65;max-width:850px}
+.story-heading time{font-family:var(--font-geist-mono),monospace;color:var(--blue);font-size:.8rem}
+.story-cover{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--paper)}
+.story-cover img{object-fit:cover}
+.story-body{width:min(100% - 36px,780px);margin:0 auto;padding:4rem 0}
+.story-body p{white-space:pre-wrap;font-size:1.12rem;line-height:1.85;margin:0 0 1.8rem;color:#37465a;overflow-wrap:anywhere}
+.story-body h2{font-size:clamp(1.8rem,3vw,2.7rem);line-height:1.15;margin:2.5rem 0 1.3rem}
+.story-body figure{margin:2.5rem 0}
+.story-body figcaption{font-size:.85rem;color:#68788d;padding:12px 0;line-height:1.6}
+.story-image{display:block;width:100%;height:auto;object-fit:contain}
+.youtube-video{aspect-ratio:16/9;background:#0a203a;color:white;overflow:hidden}
+.youtube-video iframe{width:100%;height:100%;border:0}
+.youtube-video button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:15px;width:100%;height:100%;background:transparent;color:white;border:0;padding:20px;cursor:pointer}
+.youtube-video button svg{color:var(--yellow)}
+.youtube-video button strong{font-size:1.2rem}
+.youtube-video button span{color:#b9c7d7;font-size:.82rem}
+.story-bottom{max-width:780px;border-top:1px solid var(--line);padding-top:2rem}
+.donations-section,.backers-section{padding:clamp(4rem,8vw,8rem) 0}
+.donation-layout{display:grid;grid-template-columns:1fr 1fr;gap:6vw;align-items:start}
+.donation-layout>div:first-child h2{margin:1.2rem 0 1.8rem;font-size:clamp(2.3rem,4.5vw,4.4rem)}
+.donation-layout>div:first-child>p:not(.eyebrow){color:#bac7d9;font-size:1.06rem;line-height:1.75}
+.donation-panel{background:#102943;border:1px solid #35506e;padding:clamp(1.5rem,3vw,3rem)}
+.donation-panel h3{font-size:clamp(1.5rem,2.5vw,2.5rem);margin:1.5rem 0;color:white}
+.donation-panel>p{color:#b9c9db;font-size:.88rem}
+.donation-select{display:flex;flex-direction:column;gap:12px;font-size:.85rem}
+.donation-select select{width:100%;padding:14px;background:#fff;border:0;color:#142940;font:inherit}
+.donation-panel dl{margin-bottom:2rem}
+.donation-panel dl>div{padding:14px 0;border-bottom:1px solid #34506d}
+.donation-panel dt{color:#9cb1ca;font-size:.75rem;margin-bottom:7px}
+.donation-panel dd{margin:0;font-size:1.03rem;color:white;overflow-wrap:anywhere}
+.payment-account{font-family:var(--font-geist-mono),monospace;user-select:all}
+.transfer-instructions{white-space:pre-wrap}
+.donation-panel .transfer-notice{margin-top:1.2rem;font-size:.78rem;color:#aabbce}
+.payment-providers{display:flex;flex-wrap:wrap;gap:8px;margin:1.5rem 0}
+.payment-providers span{border:1px solid #49617d;padding:7px 10px;color:#c7d5e7;font-size:.73rem}
+.backers-section .section-heading p:last-child{max-width:700px;margin-top:1.5rem}
+.backers-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.backer{position:relative;border:1px solid var(--line);padding:24px;min-width:0}
+.backer-logo{position:relative;height:100px;margin:15px 0 25px}
+.backer-logo img{object-fit:contain}
+.backer h3{font-size:1.1rem;margin-bottom:10px}
+.backer p{font-size:.85rem}
+.backer>a{display:inline-flex;color:var(--blue)}
+.signup-honeypot{position:absolute!important;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
+.form-error{padding:1rem;background:#fff2ef;border-left:4px solid #bb3926;color:#98291e!important;font-size:.9rem}
+.form-privacy{font-size:.78rem!important;line-height:1.6;color:#6b798c}
+.form-submit:disabled{opacity:.65;cursor:default}
+.news-card-copy h2,.journey-item h3{overflow-wrap:anywhere}
+.news-card-image img{object-position:50% 30%}
+.technical-masterplan .photo-label,.regions-photo .photo-label{max-width:calc(100% - 30px)}
+@media(max-width:980px){.backers-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:800px){.donation-layout{grid-template-columns:1fr;gap:2rem}.story-page{padding-top:3rem}.story-body{padding-top:2.5rem}.story-cover{aspect-ratio:4/3}.backer{padding:18px}}
+@media(max-width:520px){.backers-grid{grid-template-columns:1fr 1fr;gap:10px}.backer-logo{height:80px}.backer h3{font-size:.95rem}.donation-panel .button{width:100%}}
+
+/* Preserve the complete proposed facility and its annotated masterplan. */
+.regions-photo { min-height: 0; aspect-ratio: 16 / 9; }
+.regions-photo img { object-fit: contain; }
+.technical-masterplan { min-height: 0; aspect-ratio: 1672 / 941; }
+.technical-masterplan img { object-fit: contain; }
+.hero-ticker span + span::before { content: "★"; margin-right: clamp(1rem, 3vw, 3rem); color: var(--yellow); }

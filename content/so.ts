@@ -43,6 +43,7 @@ export const so: CampaignContent = {
     fieldRequired: "Meel khasab ah",
   },
   home: {
+    ticker: ["DIB-U-HABAYN", "HORUMAR", "MIDNIMO", "SHARAFTA QARANKA"],
     hero: {
       eyebrow: "Musharraxa Madaxweynaha · Xiriirka Kubadda Cagta Soomaaliyeed · 2027",
       title: "Dib u Dhis Kubadda Cagta Soomaaliyeed.",
@@ -421,11 +422,11 @@ export const so: CampaignContent = {
     galleryTitle: "Sawirrada ololaha",
     gallery: [
       { src: "/images/deeq-campaign-portrait.jpg", alt: "Sawirka ololaha Deeq M Afrika oo hor taagan calanka Soomaaliya", caption: "Xiriir Furan. Fursad Siman.", position: "50% 24%" },
-      { src: "/images/deeq-kids-united.jpg", alt: "Deeq Afrika oo la jooga ciyaaryahan yar munaasabad bulsho", caption: "Garab-taagnaanta jiilka soo socda" },
-      { src: "/images/kids-match.jpg", alt: "Carruur ciyaaraysa kubadda cagta", caption: "Kubadda salka bulsho kasta" },
-      { src: "/images/national-anthem.jpg", alt: "Ciyaartoyda iyo shaqaalaha Soomaaliya oo u taagan heesta qaranka", caption: "Sharaf qaran iyo ujeeddo mideysan" },
-      { src: "/images/certificate-girl.jpg", alt: "Gabar yar oo lagu maamuusayo munaasabad kubadeed", caption: "Fursad siman oo ciyaaryahan kasta oo yar" },
-      { src: "/images/players-celebrate.jpg", alt: "Ciyaartoy Soomaaliyeed oo wada dabbaaldegaya", caption: "Hibadu horey bay u joogtaa" },
+      { src: "/images/deeq-kids-united.jpg", alt: "Deeq Afrika oo la jooga ciyaaryahan yar munaasabad bulsho", caption: "Garab-taagnaanta jiilka soo socda", position: "50% 35%" },
+      { src: "/images/kids-match.jpg", alt: "Carruur ciyaaraysa kubadda cagta", caption: "Kubadda salka bulsho kasta", position: "50% 50%" },
+      { src: "/images/national-anthem.jpg", alt: "Ciyaartoyda iyo shaqaalaha Soomaaliya oo u taagan heesta qaranka", caption: "Sharaf qaran iyo ujeeddo mideysan", position: "50% 50%" },
+      { src: "/images/certificate-girl.jpg", alt: "Gabar yar oo lagu maamuusayo munaasabad kubadeed", caption: "Fursad siman oo ciyaaryahan kasta oo yar", position: "50% 70%" },
+      { src: "/images/players-celebrate.jpg", alt: "Ciyaartoy Soomaaliyeed oo wada dabbaaldegaya", caption: "Hibadu horey bay u joogtaa", position: "50% 40%" },
     ],
     resourcesTitle: "Agabka ololaha",
     resourcesBody: "Soo dejiso dukumentiga Himilada 2034. Sawirro warbaahin iyo muuqaallo dheeraad ah ayaa lagu dari doonaa marka la soo saaro.",
@@ -444,6 +445,8 @@ export const so: CampaignContent = {
       { title: "Ka qayb qaado hawlaha ololaha", body: "Diiwaangeli xiisaha aad u qabto munaasabadaha bulshada, kubadda iyo ololaha.", icon: "users" },
       { title: "La wadaag khibraddaada", body: "Ku biiri aqoon kubadeed, ganacsi, warbaahin ama qurbajoog.", icon: "spark" },
     ],
+    roles: ["Taageero", "Hawlo & munaasabado", "Khibrad xirfadeed", "Warbaahin"],
+    selectRole: "Dooro",
     formTitle: "Ku biir ololaha",
     fields: {
       name: "Magaca oo buuxa",
@@ -460,6 +463,9 @@ export const so: CampaignContent = {
     contactBody: "Iimayl campaign@deeqafrika.so · Muqdisho, Soomaaliya",
   },
   footer: {
+    socialLinks: [{ label: "X · @DeeqAfrika", href: "https://x.com/DeeqAfrika" }, { label: "Instagram · @deeqafrik", href: "https://instagram.com/deeqafrik" }],
+    socialNote: "Facebook · Deeq Mohamed Afrika",
+    electionYear: "2027",
     statement: "Dib u Dhis Kubadda Cagta Soomaaliyeed—salka ilaa sarraynta.",
     navigation: "Sahami",
     contact: "Xiriir",

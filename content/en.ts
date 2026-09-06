@@ -43,6 +43,7 @@ export const en: CampaignContent = {
     fieldRequired: "Required field",
   },
   home: {
+    ticker: ["REFORM", "DEVELOPMENT", "UNITY", "NATIONAL PRIDE"],
     hero: {
       eyebrow: "Candidate for President · Somali Football Federation · 2027",
       title: "Rebuild Somali Football.",
@@ -421,11 +422,11 @@ export const en: CampaignContent = {
     galleryTitle: "Campaign photography",
     gallery: [
       { src: "/images/deeq-campaign-portrait.jpg", alt: "Deeq M Afrika campaign portrait in front of the Somali flag", caption: "Xiriir Furan. Fursad Siman.", position: "50% 24%" },
-      { src: "/images/deeq-kids-united.jpg", alt: "Deeq Afrika with a young footballer at a community event", caption: "Standing with the next generation" },
-      { src: "/images/kids-match.jpg", alt: "Children playing a football match", caption: "Grassroots football in every community" },
-      { src: "/images/national-anthem.jpg", alt: "Somalia players and staff standing for the national anthem", caption: "National pride and shared purpose" },
-      { src: "/images/certificate-girl.jpg", alt: "A young girl receiving recognition at a football event", caption: "A fair chance for every young player" },
-      { src: "/images/players-celebrate.jpg", alt: "Somalia football players celebrating together", caption: "The talent is already here" },
+      { src: "/images/deeq-kids-united.jpg", alt: "Deeq Afrika with a young footballer at a community event", caption: "Standing with the next generation", position: "50% 35%" },
+      { src: "/images/kids-match.jpg", alt: "Children playing a football match", caption: "Grassroots football in every community", position: "50% 50%" },
+      { src: "/images/national-anthem.jpg", alt: "Somalia players and staff standing for the national anthem", caption: "National pride and shared purpose", position: "50% 50%" },
+      { src: "/images/certificate-girl.jpg", alt: "A young girl receiving recognition at a football event", caption: "A fair chance for every young player", position: "50% 70%" },
+      { src: "/images/players-celebrate.jpg", alt: "Somalia football players celebrating together", caption: "The talent is already here", position: "50% 40%" },
     ],
     resourcesTitle: "Campaign resources",
     resourcesBody: "Download the current Vision 2034 campaign document. Additional press photography and video will be added as they are released.",
@@ -444,6 +445,8 @@ export const en: CampaignContent = {
       { title: "Join campaign activity", body: "Register your interest in community, football and campaign events.", icon: "users" },
       { title: "Share expertise", body: "Contribute knowledge from football, business, media or the diaspora.", icon: "spark" },
     ],
+    roles: ["Support the campaign", "Activities & events", "Professional expertise", "Media enquiry"],
+    selectRole: "Select one",
     formTitle: "Join the campaign",
     fields: {
       name: "Full name",
@@ -460,6 +463,9 @@ export const en: CampaignContent = {
     contactBody: "Email campaign@deeqafrika.so · Mogadishu, Somalia",
   },
   footer: {
+    socialLinks: [{ label: "X · @DeeqAfrika", href: "https://x.com/DeeqAfrika" }, { label: "Instagram · @deeqafrik", href: "https://instagram.com/deeqafrik" }],
+    socialNote: "Facebook · Deeq Mohamed Afrika",
+    electionYear: "2027",
     statement: "Rebuild Somali Football — from grassroots to greatness.",
     navigation: "Explore",
     contact: "Contact",

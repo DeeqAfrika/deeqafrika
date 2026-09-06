@@ -59,7 +59,7 @@ export function validateContent(value: unknown, lang: Language): CampaignContent
     if (Array.isArray(template)) {
       if (!Array.isArray(candidate) || candidate.length < 1 || candidate.length > 100) throw new Error(`${path}: keep between 1 and 100 items.`);
       if (['about.journey', 'plan.policies'].includes(path) && candidate.length !== template.length) throw new Error(`${path}: keep the existing ${template.length} entries.`);
-      return candidate.map((item, index) => walk(item, template[0], `${path}.${index}`));
+      return candidate.map((item, index) => walk(item, template[index] ?? template[0], `${path}.${index}`));
     }
     if (!candidate || typeof candidate !== 'object' || Array.isArray(candidate)) throw new Error(`${path}: invalid section.`);
     const source = template as Record<string, unknown>;

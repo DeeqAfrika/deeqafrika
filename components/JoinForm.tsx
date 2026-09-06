@@ -53,11 +53,8 @@ export function JoinForm({ copy }: { copy: CampaignContent }) {
       <label>
         <span>{copy.join.fields.role}</span>
         <select required name="role" defaultValue="">
-          <option value="" disabled>{copy.lang === "so" ? "Dooro" : "Select one"}</option>
-          <option>{copy.lang === "so" ? "Taageero" : "Support the campaign"}</option>
-          <option>{copy.lang === "so" ? "Hawlo & munaasabado" : "Activities & events"}</option>
-          <option>{copy.lang === "so" ? "Khibrad xirfadeed" : "Professional expertise"}</option>
-          <option>{copy.lang === "so" ? "Warbaahin" : "Media enquiry"}</option>
+          <option value="" disabled>{copy.join.selectRole}</option>
+          {copy.join.roles.map(role => <option key={role}>{role}</option>)}
         </select>
       </label>
       <label>

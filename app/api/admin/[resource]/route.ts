@@ -61,7 +61,7 @@ export async function POST(request: Request, { params }: Context) {
       let value;
       try { value = validateDocument(input.kind, input.data, input.locale, input.publish); } catch (error) { throw new HttpError(400, error instanceof Error ? error.message : 'Check the content fields.'); }
       const { data, error } = await db.rpc('save_campaign_document', { p_id: input.id, p_kind: input.kind, p_locale: input.locale, p_data: value, p_revision: input.revision, p_publish: input.publish });
-      if (error?.code === '40001') throw new HttpError(409, 'Someone saved a newer version. Reload the editor before saving again.');
+      if ((error?.code === 'PT409' || error?.code === '40001')) throw new HttpError(409, 'Someone saved a newer version. Reload the editor before saving again.');
       if (error?.code === '23505') throw new HttpError(409, 'Another published post already uses that URL slug. Choose a different slug.');
       if (error) throw error;
       return Response.json({ document: data });

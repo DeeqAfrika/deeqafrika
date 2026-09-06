@@ -35,4 +35,4 @@ npm test
 - Campaign imagery: `public/images/`
 - Vision 2034 download: `public/downloads/rebuild-somali-football-vision-2034.pdf`
 
-The contact form is intentionally lightweight: it prepares a pre-filled email to `campaign@deeqafrika.so`, so it works without collecting or storing supporter data on the site.
+The `/admin` workspace manages bilingual pages, images, news with YouTube videos, donation receiving details, supporting-entity logos and private campaign registrations. See [the admin setup guide](docs/ADMIN_SETUP.md) for environment variables, database setup and publishing. Supporter registrations are stored in Supabase; donations use administrator-configured direct-transfer instructions.

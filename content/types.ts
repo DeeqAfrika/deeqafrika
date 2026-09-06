@@ -49,6 +49,7 @@ export type CampaignContent = {
     fieldRequired: string;
   };
   home: {
+    ticker: string[];
     hero: {
       eyebrow: string;
       title: string;
@@ -202,6 +203,8 @@ export type CampaignContent = {
     intro: string;
     waysTitle: string;
     ways: Array<{ title: string; body: string; icon: string }>;
+    roles: string[];
+    selectRole: string;
     formTitle: string;
     fields: {
       name: string;
@@ -218,6 +221,9 @@ export type CampaignContent = {
     contactBody: string;
   };
   footer: {
+    socialLinks: LinkItem[];
+    socialNote: string;
+    electionYear: string;
     statement: string;
     navigation: string;
     contact: string;

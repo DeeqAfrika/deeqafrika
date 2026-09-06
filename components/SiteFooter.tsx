@@ -31,20 +31,19 @@ export function SiteFooter({ copy }: { copy: CampaignContent }) {
 
         <div className="footer-column">
           <h2>{copy.footer.contact}</h2>
-          <a href="mailto:campaign@deeqafrika.so">campaign@deeqafrika.so</a>
-          <span>{copy.lang === "so" ? "Muqdisho, Soomaaliya" : "Mogadishu, Somalia"}</span>
+          <a href={`mailto:${copy.contact.email}`}>{copy.contact.email}</a>
+          <span>{copy.contact.location}</span>
         </div>
 
         <div className="footer-column">
           <h2>{copy.footer.follow}</h2>
-          <a href="https://x.com/DeeqAfrika" target="_blank" rel="noreferrer">X · @DeeqAfrika</a>
-          <a href="https://instagram.com/deeqafrik" target="_blank" rel="noreferrer">Instagram · @deeqafrik</a>
-          <span>Facebook · Deeq Mohamed Afrika</span>
+          {copy.footer.socialLinks.map(link => <a key={link.href} href={link.href} target="_blank" rel="noreferrer">{link.label}</a>)}
+          <span>{copy.footer.socialNote}</span>
         </div>
       </div>
       <div className="footer-bottom container">
         <span>{copy.footer.copyright}</span>
-        <span>{copy.brand.role} · 2027</span>
+        <span>{copy.brand.role} · {copy.footer.electionYear}</span>
       </div>
     </footer>
   );
