@@ -22,6 +22,12 @@ npm test
 
 `npm test` creates a production build and checks the rendered campaign routes, language metadata, and removal of starter preview content.
 
+## Deployment targets
+
+- `npm run build` produces the Sites/Vinext release.
+- `npm run build:vercel` produces the standard Next.js release used by Vercel.
+- `vercel.json` selects the Next.js build automatically for Git-based Vercel deployments.
+
 ## Content and assets
 
 - Bilingual copy: `content/en.ts` and `content/so.ts`

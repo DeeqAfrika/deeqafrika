@@ -18,9 +18,14 @@ export async function pageMetadata(
   const path = section ? `/${copy.lang}/${section}` : `/${copy.lang}`;
   const otherLang = copy.lang === "en" ? "so" : "en";
   const otherPath = section ? `/${otherLang}/${section}` : `/${otherLang}`;
-  const page = section ? copy[section] : copy.home;
-  const pageTitle = section ? `${page.title} | ${copy.brand.name}` : copy.meta.title;
-  const description = section ? page.intro : copy.meta.description;
+  let pageTitle = copy.meta.title;
+  let description = copy.meta.description;
+
+  if (section) {
+    const page = copy[section];
+    pageTitle = `${page.title} | ${copy.brand.name}`;
+    description = page.intro;
+  }
 
   return {
     metadataBase: base,
