@@ -1765,21 +1765,35 @@ ol {
 
 .journey-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1px;
   background: var(--line);
   border: 1px solid var(--line);
 }
 
 .journey-item {
-  min-height: 330px;
+  min-width: 0;
   background: var(--white);
-  padding: 2rem;
 }
 
-.journey-item > span {
+.journey-photo {
+  position: relative;
+  aspect-ratio: 1280 / 742;
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.journey-photo img {
+  object-fit: cover;
+}
+
+.journey-copy {
+  padding: clamp(1.2rem, 1.8vw, 2rem);
+}
+
+.journey-chapter > span {
   display: block;
-  margin-bottom: 5rem;
+  margin-bottom: 1.4rem;
   color: var(--blue);
   font-family: var(--font-geist-mono), monospace;
   font-size: 0.68rem;
@@ -2183,9 +2197,6 @@ ol {
     border-bottom: 1px solid rgba(255, 255, 255, 0.16);
   }
 
-  .journey-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
 @media (max-width: 980px) {
@@ -2788,10 +2799,6 @@ ol {
   .journey-grid,
   .form-grid {
     grid-template-columns: 1fr;
-  }
-
-  .journey-item {
-    min-height: 280px;
   }
 
   .gallery-grid {

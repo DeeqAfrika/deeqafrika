@@ -485,6 +485,33 @@ export function PlanPage({ copy }: { copy: CampaignContent }) {
 }
 
 export function AboutPage({ copy }: { copy: CampaignContent }) {
+  const journeyCards = [
+    {
+      image: "/images/ajax-youth-team.png",
+      alt: copy.lang === "so" ? "Kooxda dhalinyarada Ajax" : "Ajax youth football team posing together on the pitch",
+      position: "center",
+      items: copy.about.journey.slice(0, 1),
+    },
+    {
+      image: "/images/somalia-national-team.png",
+      alt: copy.lang === "so" ? "Ciyaartoyda Xulka Qaranka Soomaaliyeed oo safan garoonka" : "Somalia national team players lined up at the stadium",
+      position: "center 60%",
+      items: copy.about.journey.slice(1, 2),
+    },
+    {
+      image: "/images/deeq-leadership-portrait.png",
+      alt: copy.lang === "so" ? "Sawirka Deeq Afrika" : "Deeq Afrika in a blue suit in front of the Somali Football Federation backdrop",
+      position: "center 12%",
+      items: copy.about.journey.slice(2, 3),
+    },
+    {
+      image: "/images/deeq-entrepreneurship.png",
+      alt: copy.lang === "so" ? "Deeq Afrika oo ka qaybgalaya xaflad abaalmarin" : "Deeq Afrika taking part in an award presentation at a business event",
+      position: "center 25%",
+      items: copy.about.journey.slice(3),
+    },
+  ];
+
   return (
     <main id="main-content">
       <PageHero
@@ -508,11 +535,26 @@ export function AboutPage({ copy }: { copy: CampaignContent }) {
         <div className="container">
           <Reveal className="section-heading"><h2>{copy.about.journeyTitle}</h2></Reveal>
           <div className="journey-grid">
-            {copy.about.journey.map((item, index) => (
-              <Reveal className="journey-item" key={item.title} delay={index * 70}>
-                <span>{item.label}</span>
-                <h3>{item.title}</h3>
-                <p>{item.body}</p>
+            {journeyCards.map((card, index) => (
+              <Reveal className="journey-item" key={card.image} delay={index * 70}>
+                <div className="journey-photo">
+                  <Image
+                    src={card.image}
+                    alt={card.alt}
+                    fill
+                    sizes="(max-width: 800px) 100vw, 50vw"
+                    style={{ objectPosition: card.position }}
+                  />
+                </div>
+                <div className="journey-copy">
+                  {card.items.map((item) => (
+                    <div className="journey-chapter" key={item.title}>
+                      <span>{item.label}</span>
+                      <h3>{item.title}</h3>
+                      <p>{item.body}</p>
+                    </div>
+                  ))}
+                </div>
               </Reveal>
             ))}
           </div>
