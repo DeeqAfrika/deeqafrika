@@ -61,6 +61,7 @@ function PageHero({
 
 export async function HomePage({ copy }: { copy: CampaignContent }) {
   const lang = copy.lang;
+  const experienceImages = [copy.images.journeyPlayer, copy.images.journeyInternational, copy.images.journeyBuilder, copy.images.journeyLeader];
   const posts = await getPosts();
   const latest = posts.length ? posts.slice(0, 3).map(({ data: post }) => ({ tag: post.translations[lang].category, title: post.translations[lang].title, body: post.translations[lang].excerpt, href: `/${lang}/news/${post.slug}` })) : copy.home.latest.items;
 
@@ -146,8 +147,17 @@ export async function HomePage({ copy }: { copy: CampaignContent }) {
           <div className="experience-list">
             {copy.home.experience.items.map((item, index) => (
               <Reveal key={item.title} className="experience-row" delay={index * 65}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <div>
+                {experienceImages[index] && (
+                  <div className="experience-photo">
+                    <CampaignImage
+                      asset={experienceImages[index]}
+                      fill
+                      sizes="(max-width: 520px) 100vw, (max-width: 1100px) 40vw, 22vw"
+                    />
+                  </div>
+                )}
+                <div className="experience-copy">
+                  <span className="experience-number">{String(index + 1).padStart(2, "0")}</span>
                   <h3>{item.title}</h3>
                   <p>{item.detail}</p>
                 </div>

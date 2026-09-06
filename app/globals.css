@@ -735,17 +735,42 @@ ol {
 
 .experience-row {
   display: grid;
-  grid-template-columns: 70px 1fr;
-  gap: 1rem;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: 1.5rem;
   border-bottom: 1px solid var(--line);
   padding: 2rem 0;
 }
 
-.experience-row > span {
+.experience-number {
+  display: block;
+  margin-bottom: 0.6rem;
   color: var(--blue);
   font-family: var(--font-geist-mono), monospace;
   font-size: 0.75rem;
   font-weight: 700;
+}
+
+.experience-photo {
+  position: relative;
+  aspect-ratio: 1280 / 742;
+  overflow: hidden;
+  background: var(--line);
+}
+
+.experience-photo img {
+  object-fit: cover;
+}
+
+.experience-copy:only-child {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 520px) {
+  .experience-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
+  }
 }
 
 .experience-row h3 {
