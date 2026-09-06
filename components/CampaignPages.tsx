@@ -213,6 +213,9 @@ export async function HomePage({ copy }: { copy: CampaignContent }) {
             <Eyebrow>{copy.home.open.label}</Eyebrow>
             <h2>{copy.home.open.title}</h2>
             <p>{copy.home.open.body}</p>
+            <div className="slogan-panel-visual">
+              <Image src="/images/federation-governance.png" alt="" fill sizes="(max-width: 800px) 100vw, 50vw" />
+            </div>
             <ul>
               {copy.home.open.items.map((item) => <li key={item}>{item}</li>)}
             </ul>
@@ -221,6 +224,9 @@ export async function HomePage({ copy }: { copy: CampaignContent }) {
             <Eyebrow light>{copy.home.equal.label}</Eyebrow>
             <h2>{copy.home.equal.title}</h2>
             <p>{copy.home.equal.body}</p>
+            <div className="slogan-panel-visual">
+              <Image src="/images/football-opportunity.png" alt="" fill sizes="(max-width: 800px) 100vw, 50vw" />
+            </div>
             <div className="equal-tags">
               {copy.home.equal.items.map((item) => <span key={item}>{item}</span>)}
             </div>
