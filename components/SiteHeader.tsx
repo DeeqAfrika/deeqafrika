@@ -19,10 +19,6 @@ export function SiteHeader({
   const otherLang = copy.lang === "en" ? "so" : "en";
 
   useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
     document.documentElement.lang = copy.lang;
   }, [copy.lang]);
 
@@ -45,7 +41,7 @@ export function SiteHeader({
       </a>
       <header className="site-header">
         <div className="header-inner">
-          <Link className="brand-mark" href={`/${copy.lang}`} aria-label={`${copy.brand.name} — ${copy.nav.home}`}>
+          <Link className="brand-mark" href={`/${copy.lang}`} aria-label={`${copy.brand.name} — ${copy.nav.home}`} onClick={() => setOpen(false)}>
             <span className="brand-star" aria-hidden="true">★</span>
             <span className="brand-copy">
               <strong>{copy.brand.shortName}</strong>
@@ -60,6 +56,7 @@ export function SiteHeader({
                 className={currentKey === key ? "is-active" : ""}
                 href={routeFor(copy.lang, key)}
                 aria-current={currentKey === key ? "page" : undefined}
+                onClick={() => setOpen(false)}
               >
                 {copy.nav[key]}
               </Link>
@@ -72,6 +69,7 @@ export function SiteHeader({
               href={switchLanguagePath(pathname, otherLang)}
               hrefLang={otherLang}
               aria-label={`Switch to ${otherLang === "so" ? "Somali" : "English"}`}
+              onClick={() => setOpen(false)}
             >
               <span className={copy.lang === "so" ? "active" : ""}>SO</span>
               <i aria-hidden="true" />
@@ -98,6 +96,7 @@ export function SiteHeader({
                 tabIndex={open ? 0 : -1}
                 href={routeFor(copy.lang, key)}
                 aria-current={currentKey === key ? "page" : undefined}
+                onClick={() => setOpen(false)}
               >
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 {copy.nav[key]}
