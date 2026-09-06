@@ -7,42 +7,47 @@ import { CampaignIcon } from "./CampaignIcon";
 export function JoinForm({ copy }: { copy: CampaignContent }) {
   const [submitted, setSubmitted] = useState(false);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  const [pending, setPending] = useState(false);
+  const [error, setError] = useState('');
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const subject = copy.lang === "so" ? "Ku biirista ololaha" : "Campaign involvement";
-    const body = [
-      `${copy.join.fields.name}: ${data.get("name")}`,
-      `${copy.join.fields.email}: ${data.get("email")}`,
-      `${copy.join.fields.phone}: ${data.get("phone") || "—"}`,
-      `${copy.join.fields.region}: ${data.get("region")}`,
-      `${copy.join.fields.role}: ${data.get("role")}`,
-      "",
-      `${copy.join.fields.message}:`,
-      `${data.get("message")}`,
-    ].join("\n");
-    setSubmitted(true);
-    window.location.href = `mailto:campaign@deeqafrika.so?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    if (pending) return;
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    setPending(true);
+    setError('');
+    try {
+      const response = await fetch('/api/supporters', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: data.get('name'), email: data.get('email'), phone: data.get('phone') || '', region: data.get('region'), role: data.get('role'), message: data.get('message') || '', consent: data.get('consent') === 'on', locale: copy.lang, website: data.get('website') || '' }),
+      });
+      if (!response.ok) throw new Error('Registration failed');
+      setSubmitted(true);
+      form.reset();
+    } catch { setError(copy.participation.signupError); }
+    finally { setPending(false); }
   }
 
   return (
     <form className="join-form" onSubmit={handleSubmit}>
+      <label className="signup-honeypot" aria-hidden="true">Website<input name="website" tabIndex={-1} autoComplete="off" /></label>
       <div className="form-grid">
         <label>
           <span>{copy.join.fields.name}</span>
-          <input required name="name" autoComplete="name" />
+          <input maxLength={120} required name="name" autoComplete="name" />
         </label>
         <label>
           <span>{copy.join.fields.email}</span>
-          <input required name="email" type="email" autoComplete="email" />
+          <input maxLength={254} required name="email" type="email" autoComplete="email" />
         </label>
         <label>
           <span>{copy.join.fields.phone}</span>
-          <input name="phone" type="tel" autoComplete="tel" />
+          <input maxLength={40} name="phone" type="tel" autoComplete="tel" />
         </label>
         <label>
           <span>{copy.join.fields.region}</span>
-          <input required name="region" autoComplete="country-name" />
+          <input maxLength={120} required name="region" autoComplete="country-name" />
         </label>
       </div>
       <label>
@@ -57,16 +62,18 @@ export function JoinForm({ copy }: { copy: CampaignContent }) {
       </label>
       <label>
         <span>{copy.join.fields.message}</span>
-        <textarea required name="message" rows={5} />
+        <textarea name="message" maxLength={3000} rows={5} />
       </label>
       <label className="consent-row">
         <input required type="checkbox" name="consent" />
         <span>{copy.join.fields.consent}</span>
       </label>
-      <button className="button button-yellow form-submit" type="submit">
-        {copy.join.fields.submit}
+      <button className="button button-yellow form-submit" type="submit" disabled={pending || submitted}>
+        {pending ? copy.participation.signupPending : copy.join.fields.submit}
         <CampaignIcon name="arrow" size={18} />
       </button>
+      <p className="form-privacy">{copy.participation.privacy}</p>
+      {error && <p className="form-error" role="alert">{error}</p>}
       {submitted ? <p className="form-success" role="status">{copy.join.fields.success}</p> : null}
     </form>
   );

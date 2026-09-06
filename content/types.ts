@@ -17,6 +17,9 @@ export type LinkItem = {
 };
 
 export type CampaignContent = {
+  images: Record<import('@/lib/cms/types').ImageSlot, import('@/lib/cms/types').ImageAsset>;
+  participation: ReturnType<typeof import('./cms-defaults').participationCopy>;
+  contact: { email: string; location: string };
   lang: Language;
   locale: string;
   languageName: string;

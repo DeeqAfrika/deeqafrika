@@ -1,7 +1,8 @@
+import { getCampaignContent } from "@/lib/cms/content";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
-import { content, isLanguage } from "@/content";
+import { isLanguage } from "@/content";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import "../globals.css";
@@ -39,10 +40,10 @@ export default async function LanguageLayout({
 }) {
   const { lang } = await params;
   if (!isLanguage(lang)) notFound();
-  const copy = content[lang];
+  const copy = await getCampaignContent(lang);
 
   return (
-    <html lang={lang}>
+    <html lang={lang} data-scroll-behavior="smooth">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <SiteHeader copy={copy} />
         {children}

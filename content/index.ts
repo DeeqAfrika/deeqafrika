@@ -30,7 +30,7 @@ export function routeFor(lang: Language, key: NavKey): string {
 export function switchLanguagePath(pathname: string, lang: Language): string {
   const parts = pathname.split("/").filter(Boolean);
   const section = parts[1];
-  return section && isSection(section) ? `/${lang}/${section}` : `/${lang}`;
+  return section && isSection(section) ? `/${lang}/${parts.slice(1).join("/")}` : `/${lang}`;
 }
 
 export type { CampaignContent, Language, NavKey, SectionSlug };

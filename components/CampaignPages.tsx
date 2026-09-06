@@ -1,3 +1,6 @@
+import { getPosts, getSettings } from "@/lib/cms/content";
+import { CampaignImage } from "./CampaignImage";
+import { Participation } from "./Participation";
 import Image from "next/image";
 import Link from "next/link";
 import type { CampaignContent, SectionSlug } from "@/content";
@@ -56,8 +59,10 @@ function PageHero({
   );
 }
 
-export function HomePage({ copy }: { copy: CampaignContent }) {
+export async function HomePage({ copy }: { copy: CampaignContent }) {
   const lang = copy.lang;
+  const posts = await getPosts();
+  const latest = posts.length ? posts.slice(0, 3).map(({ data: post }) => ({ tag: post.translations[lang].category, title: post.translations[lang].title, body: post.translations[lang].excerpt, href: `/${lang}/news/${post.slug}` })) : copy.home.latest.items;
 
   return (
     <main id="main-content">
@@ -83,9 +88,8 @@ export function HomePage({ copy }: { copy: CampaignContent }) {
             </div>
           </div>
           <div className="hero-portrait">
-            <Image
-              src="/images/deeq-campaign-portrait.jpg"
-              alt={`${copy.brand.name} — ${copy.brand.role}`}
+            <CampaignImage
+              asset={copy.images.homeHero} — ${copy.brand.role}`}
               fill
               priority
               sizes="(max-width: 800px) 100vw, 48vw"
@@ -128,9 +132,8 @@ export function HomePage({ copy }: { copy: CampaignContent }) {
             <ArrowLink href={`/${lang}/about`}>{copy.nav.about}</ArrowLink>
           </Reveal>
           <Reveal className="editorial-image portrait-landscape" delay={120}>
-            <Image
-              src="/images/deeq-kids-united.jpg"
-              alt={copy.lang === "so" ? "Deeq Afrika oo la jooga ciyaaryahan yar" : "Deeq Afrika with a young footballer"}
+            <CampaignImage
+              asset={copy.images.homeCommunity}
               fill
               sizes="(max-width: 800px) 100vw, 48vw"
             />
@@ -162,9 +165,8 @@ export function HomePage({ copy }: { copy: CampaignContent }) {
 
       <section className="vision-bridge section-dark">
         <div className="vision-bridge-image">
-          <Image
-            src="/images/national-huddle.jpg"
-            alt={copy.lang === "so" ? "Ciyaartoyda Soomaaliya oo isku duuban" : "Somalia players gathered in a team huddle"}
+          <CampaignImage
+            asset={copy.images.homeVision}
             fill
             sizes="100vw"
           />
@@ -244,13 +246,13 @@ export function HomePage({ copy }: { copy: CampaignContent }) {
       <section className="regions-section section-light">
         <div className="container regions-grid">
           <Reveal className="regions-photo">
-            <Image
-              src="/images/technical-center-training.jpg"
-              alt={copy.lang === "so" ? "Tababbar kubadeed oo ka socda xarun farsamo" : "Football training at a proposed technical centre"}
+            <CampaignImage
+              asset={copy.images.homeRegions}
               fill
               sizes="(max-width: 800px) 100vw, 52vw"
             />
             <span className="image-frame image-frame-yellow" aria-hidden="true" />
+            <span className="photo-label">{copy.participation.conceptCaption}</span>
           </Reveal>
           <Reveal className="regions-copy" delay={100}>
             <Eyebrow>{copy.home.regions.label}</Eyebrow>
@@ -274,7 +276,7 @@ export function HomePage({ copy }: { copy: CampaignContent }) {
             <ArrowLink href={`/${lang}/news`}>{copy.common.viewAll}</ArrowLink>
           </Reveal>
           <div className="latest-grid">
-            {copy.home.latest.items.map((item, index) => (
+            {latest.map((item, index) => (
               <Reveal className="latest-card" key={item.title} delay={index * 80}>
                 <span>{item.tag}</span>
                 <h3>{item.title}</h3>
@@ -320,9 +322,9 @@ export function VisionPage({ copy }: { copy: CampaignContent }) {
         label={copy.vision.label}
         title={copy.vision.title}
         intro={copy.vision.intro}
-        image="/images/national-huddle.jpg"
-        alt={copy.lang === "so" ? "Ciyaartoyda Soomaaliya oo isku duuban" : "Somalia national players in a huddle"}
-        position="center 46%"
+        image={copy.images.visionHero.src}
+        alt={copy.images.visionHero.alt}
+        position={copy.images.visionHero.position}
       />
       <section className="phases-section section-light">
         <div className="container">
@@ -347,12 +349,12 @@ export function VisionPage({ copy }: { copy: CampaignContent }) {
             <p>{copy.vision.flagshipBody}</p>
           </Reveal>
           <Reveal className="technical-masterplan">
-            <Image
-              src="/images/technical-center-masterplan.jpg"
-              alt={copy.lang === "so" ? "Qorshaha muuqaalka Xarun Farsamo oo Gobol" : "Concept masterplan for a Regional Technical Centre"}
+            <CampaignImage
+              asset={copy.images.visionMasterplan}
               fill
               sizes="(max-width: 900px) 100vw, 1200px"
             />
+            <span className="photo-label">{copy.participation.conceptCaption}</span>
           </Reveal>
           <div className="spec-grid">
             {copy.vision.specs.map((spec, index) => (
@@ -429,8 +431,9 @@ export function PlanPage({ copy }: { copy: CampaignContent }) {
         label={copy.plan.label}
         title={copy.plan.title}
         intro={copy.plan.intro}
-        image="/images/kids-match.jpg"
-        alt={copy.lang === "so" ? "Carruur ciyaaraysa kubadda cagta" : "Young players in a grassroots football match"}
+        image={copy.images.planHero.src}
+        alt={copy.images.planHero.alt}
+        position={copy.images.planHero.position}
       />
       <section className="policy-index section-yellow">
         <div className="container policy-index-inner">
@@ -485,32 +488,7 @@ export function PlanPage({ copy }: { copy: CampaignContent }) {
 }
 
 export function AboutPage({ copy }: { copy: CampaignContent }) {
-  const journeyCards = [
-    {
-      image: "/images/ajax-youth-team.png",
-      alt: copy.lang === "so" ? "Kooxda dhalinyarada Ajax" : "Ajax youth football team posing together on the pitch",
-      position: "center",
-      items: copy.about.journey.slice(0, 1),
-    },
-    {
-      image: "/images/somalia-national-team.png",
-      alt: copy.lang === "so" ? "Ciyaartoyda Xulka Qaranka Soomaaliyeed oo safan garoonka" : "Somalia national team players lined up at the stadium",
-      position: "center 60%",
-      items: copy.about.journey.slice(1, 2),
-    },
-    {
-      image: "/images/deeq-leadership-portrait.png",
-      alt: copy.lang === "so" ? "Sawirka Deeq Afrika" : "Deeq Afrika in a blue suit in front of the Somali Football Federation backdrop",
-      position: "center 12%",
-      items: copy.about.journey.slice(2, 3),
-    },
-    {
-      image: "/images/deeq-entrepreneurship.png",
-      alt: copy.lang === "so" ? "Deeq Afrika oo ka qaybgalaya xaflad abaalmarin" : "Deeq Afrika taking part in an award presentation at a business event",
-      position: "center 25%",
-      items: copy.about.journey.slice(3),
-    },
-  ];
+  const journeyCards = [copy.images.journeyPlayer, copy.images.journeyInternational, copy.images.journeyBuilder, copy.images.journeyLeader].map((asset, index) => ({ ...asset, items: copy.about.journey.slice(index, index + 1) }));
 
   return (
     <main id="main-content">
@@ -519,9 +497,9 @@ export function AboutPage({ copy }: { copy: CampaignContent }) {
         label={copy.about.label}
         title={copy.about.title}
         intro={copy.about.intro}
-        image="/images/deeq-main.jpg"
-        alt={`${copy.brand.name} portrait`}
-        position="center 30%"
+        image={copy.images.aboutHero.src}
+        alt={copy.images.aboutHero.alt}
+        position={copy.images.aboutHero.position}
       />
       <section className="about-story section-light">
         <div className="container about-story-grid">
@@ -536,10 +514,10 @@ export function AboutPage({ copy }: { copy: CampaignContent }) {
           <Reveal className="section-heading"><h2>{copy.about.journeyTitle}</h2></Reveal>
           <div className="journey-grid">
             {journeyCards.map((card, index) => (
-              <Reveal className="journey-item" key={card.image} delay={index * 70}>
+              <Reveal className="journey-item" key={card.src} delay={index * 70}>
                 <div className="journey-photo">
                   <Image
-                    src={card.image}
+                    src={card.src}
                     alt={card.alt}
                     fill
                     sizes="(max-width: 800px) 100vw, 50vw"
@@ -563,7 +541,7 @@ export function AboutPage({ copy }: { copy: CampaignContent }) {
       <section className="leadership-section section-dark">
         <div className="container split-editorial split-editorial-dark">
           <Reveal className="editorial-image leadership-image">
-            <Image src="/images/deeq-sff-jersey.jpg" alt={copy.lang === "so" ? "Deeq Afrika oo garoonka kubadda jooga" : "Deeq Afrika at a football ground"} fill sizes="(max-width: 800px) 100vw, 44vw" />
+            <CampaignImage asset={copy.images.aboutLeadership} fill sizes="(max-width: 800px) 100vw, 44vw" />
           </Reveal>
           <Reveal className="editorial-copy" delay={100}>
             <h2>{copy.about.leadershipTitle}</h2>
@@ -577,7 +555,8 @@ export function AboutPage({ copy }: { copy: CampaignContent }) {
   );
 }
 
-export function NewsPage({ copy }: { copy: CampaignContent }) {
+export async function NewsPage({ copy }: { copy: CampaignContent }) {
+  const posts = await getPosts();
   return (
     <main id="main-content">
       <PageHero
@@ -585,14 +564,21 @@ export function NewsPage({ copy }: { copy: CampaignContent }) {
         label={copy.news.label}
         title={copy.news.title}
         intro={copy.news.intro}
-        image="/images/deeq-stadium.jpg"
-        alt={copy.lang === "so" ? "Deeq Afrika oo ku sugan garoon kubadeed" : "Deeq Afrika at a football stadium"}
-        position="center 25%"
+        image={copy.images.newsHero.src}
+        alt={copy.images.newsHero.alt}
+        position={copy.images.newsHero.position}
       />
       <section className="news-section section-light">
         <div className="container news-grid">
+          {posts.map(({ id, data: post }) => {
+            const story = post.translations[copy.lang];
+            return <Reveal className="news-card" key={id}>
+              <Link className="news-card-image" href={`/${copy.lang}/news/${post.slug}`} aria-label={story.title}><Image src={post.coverImage} alt={story.coverAlt} fill sizes="(max-width: 800px) 100vw, 50vw" style={{ objectPosition: post.coverPosition }} /></Link>
+              <div className="news-card-copy"><span>{story.category} · {new Date(post.publishedAt).toLocaleDateString(copy.lang === 'so' ? 'so-SO' : 'en-GB', { dateStyle: 'medium', timeZone: 'UTC' })}</span><h2><Link href={`/${copy.lang}/news/${post.slug}`}>{story.title}</Link></h2><p>{story.excerpt}</p><ArrowLink href={`/${copy.lang}/news/${post.slug}`}>{copy.participation.readStory}</ArrowLink></div>
+            </Reveal>;
+          })}
           {copy.news.items.map((item, index) => (
-            <Reveal className={`news-card ${index === 0 ? "news-card-featured" : ""}`} key={item.title} delay={index * 70}>
+            <Reveal className={`news-card ${index === 0 && posts.length === 0 ? "news-card-featured" : ""}`} key={item.title} delay={index * 70}>
               <Link className="news-card-image" href={item.href} aria-label={item.title}>
                 <Image src={item.image} alt="" fill sizes={index === 0 ? "(max-width: 800px) 100vw, 60vw" : "(max-width: 800px) 100vw, 30vw"} />
               </Link>
@@ -610,7 +596,7 @@ export function NewsPage({ copy }: { copy: CampaignContent }) {
         <Reveal className="container newsroom-inner">
           <CampaignIcon name="spark" size={32} />
           <div><h2>{copy.news.newsroomTitle}</h2><p>{copy.news.newsroomBody}</p></div>
-          <a className="button button-navy" href="mailto:campaign@deeqafrika.so">campaign@deeqafrika.so</a>
+          <a className="button button-navy" href={`mailto:${copy.contact.email}`}>{copy.contact.email}</a>
         </Reveal>
       </section>
       <FinalCta copy={copy} />
@@ -626,8 +612,9 @@ export function MediaPage({ copy }: { copy: CampaignContent }) {
         label={copy.media.label}
         title={copy.media.title}
         intro={copy.media.intro}
-        image="/images/players-celebrate.jpg"
-        alt={copy.lang === "so" ? "Ciyaartoy Soomaaliyeed oo wada dabbaaldegaya" : "Somalia football players celebrating together"}
+        image={copy.images.mediaHero.src}
+        alt={copy.images.mediaHero.alt}
+        position={copy.images.mediaHero.position}
       />
       <section className="media-gallery section-light">
         <div className="container">
@@ -665,7 +652,8 @@ export function MediaPage({ copy }: { copy: CampaignContent }) {
   );
 }
 
-export function JoinPage({ copy }: { copy: CampaignContent }) {
+export async function JoinPage({ copy }: { copy: CampaignContent }) {
+  const settings = await getSettings();
   return (
     <main id="main-content">
       <PageHero
@@ -673,9 +661,9 @@ export function JoinPage({ copy }: { copy: CampaignContent }) {
         label={copy.join.label}
         title={copy.join.title}
         intro={copy.join.intro}
-        image="/images/grassroots-laces.jpg"
-        alt={copy.lang === "so" ? "Tababbare caawinaya ciyaaryahan yar" : "A coach helping a young footballer"}
-        position="center 56%"
+        image={copy.images.joinHero.src}
+        alt={copy.images.joinHero.alt}
+        position={copy.images.joinHero.position}
       />
       <section className="ways-section section-light">
         <div className="container">
@@ -704,6 +692,7 @@ export function JoinPage({ copy }: { copy: CampaignContent }) {
           <Reveal delay={100}><JoinForm copy={copy} /></Reveal>
         </div>
       </section>
+      <Participation copy={copy} settings={settings} />
       <FinalCta copy={copy} />
     </main>
   );

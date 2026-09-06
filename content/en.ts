@@ -1,6 +1,10 @@
 import type { CampaignContent } from "./types";
+import { defaultImages, participationCopy } from './cms-defaults';
 
 export const en: CampaignContent = {
+  images: defaultImages('en'),
+  participation: participationCopy('en'),
+  contact: { email: 'campaign@deeqafrika.so', location: 'Mogadishu, Somalia' },
   lang: "en",
   locale: "en_GB",
   languageName: "English",
@@ -440,17 +444,17 @@ export const en: CampaignContent = {
       { title: "Join campaign activity", body: "Register your interest in community, football and campaign events.", icon: "users" },
       { title: "Share expertise", body: "Contribute knowledge from football, business, media or the diaspora.", icon: "spark" },
     ],
-    formTitle: "Contact the campaign",
+    formTitle: "Join the campaign",
     fields: {
       name: "Full name",
       email: "Email address",
       phone: "Phone number (optional)",
       region: "Region / country",
       role: "How would you like to get involved?",
-      message: "Your message",
+      message: "Your message (optional)",
       consent: "I agree that the campaign may contact me about campaign activity.",
-      submit: "Send your interest",
-      success: "Thank you. Your details are ready to send to the campaign team.",
+      submit: "Sign up",
+      success: "Thank you for joining. Your registration has been saved and the campaign team will be in touch.",
     },
     contactTitle: "Prefer to contact us directly?",
     contactBody: "Email campaign@deeqafrika.so · Mogadishu, Somalia",

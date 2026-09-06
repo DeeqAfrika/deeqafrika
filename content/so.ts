@@ -1,6 +1,10 @@
 import type { CampaignContent } from "./types";
+import { defaultImages, participationCopy } from './cms-defaults';
 
 export const so: CampaignContent = {
+  images: defaultImages('so'),
+  participation: participationCopy('so'),
+  contact: { email: 'campaign@deeqafrika.so', location: 'Muqdisho, Soomaaliya' },
   lang: "so",
   locale: "so_SO",
   languageName: "Soomaali",
@@ -440,17 +444,17 @@ export const so: CampaignContent = {
       { title: "Ka qayb qaado hawlaha ololaha", body: "Diiwaangeli xiisaha aad u qabto munaasabadaha bulshada, kubadda iyo ololaha.", icon: "users" },
       { title: "La wadaag khibraddaada", body: "Ku biiri aqoon kubadeed, ganacsi, warbaahin ama qurbajoog.", icon: "spark" },
     ],
-    formTitle: "La xiriir ololaha",
+    formTitle: "Ku biir ololaha",
     fields: {
       name: "Magaca oo buuxa",
       email: "Cinwaanka iimaylka",
       phone: "Lambarka telefoonka (ikhtiyaari)",
       region: "Gobolka / dalka",
       role: "Sidee ayaad jeclaan lahayd inaad uga qayb qaadato?",
-      message: "Farriintaada",
+      message: "Farriintaada (ikhtiyaari)",
       consent: "Waxaan oggolahay in ololuhu igala soo xiriiro hawlaha ololaha.",
-      submit: "Dir xiisahaaga",
-      success: "Mahadsanid. Faahfaahintaadu waxay diyaar u tahay in loo diro kooxda ololaha.",
+      submit: "Isdiiwaangeli",
+      success: "Mahadsanid. Diiwaangelintaada waa la kaydiyay, kooxda ololahana way kula soo xiriiri doontaa.",
     },
     contactTitle: "Ma doorbidaysaa inaad si toos ah noola soo xiriirto?",
     contactBody: "Iimayl campaign@deeqafrika.so · Muqdisho, Soomaaliya",
