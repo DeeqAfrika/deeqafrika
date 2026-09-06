@@ -21,6 +21,15 @@ function ArrowLink({ href, children, light = false }: { href: string; children: 
   );
 }
 
+const pathwayVisuals = [
+  { src: "/images/pathway-grassroots.png", alt: "Young players training at grassroots level" },
+  { src: "/images/pathway-academy.png", alt: "A football academy training session" },
+  { src: "/images/pathway-regional.png", alt: "Young players representing regional football" },
+  { src: "/images/pathway-club.png", alt: "Players competing in club football" },
+  { src: "/images/pathway-elite.png", alt: "An elite player in a high-performance training session" },
+  { src: "/images/pathway-national-teams.png", alt: "National team players walking onto the pitch" },
+];
+
 function PageHero({
   copy,
   label,
@@ -242,13 +251,21 @@ export async function HomePage({ copy }: { copy: CampaignContent }) {
             <p>{copy.home.pathway.body}</p>
           </Reveal>
           <div className="pathway-track" role="list">
-            {copy.home.pathway.steps.map((step, index) => (
+            {copy.home.pathway.steps.map((step, index) => {
+              const visual = pathwayVisuals[index % pathwayVisuals.length];
+              return (
               <Reveal className="pathway-step" key={step} delay={index * 60}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <strong>{step}</strong>
+                <div className="pathway-step-image">
+                  <Image src={visual.src} alt={visual.alt} fill sizes="(max-width: 800px) 210px, 16vw" />
+                </div>
+                <div className="pathway-step-content">
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <strong>{step}</strong>
+                </div>
                 {index < copy.home.pathway.steps.length - 1 ? <CampaignIcon name="arrow" size={20} /> : null}
               </Reveal>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
