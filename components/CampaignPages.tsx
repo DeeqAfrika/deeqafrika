@@ -270,28 +270,7 @@ export async function HomePage({ copy }: { copy: CampaignContent }) {
         </div>
       </section>
 
-      <section className="regions-section section-light">
-        <div className="container regions-grid">
-          <Reveal className="regions-photo">
-            <CampaignImage
-              asset={copy.images.homeRegions}
-              fill
-              sizes="(max-width: 800px) 100vw, 52vw"
-            />
-            <span className="image-frame image-frame-yellow" aria-hidden="true" />
-            <span className="photo-label">{copy.participation.conceptCaption}</span>
-          </Reveal>
-          <Reveal className="regions-copy" delay={100}>
-            <Eyebrow>{copy.home.regions.label}</Eyebrow>
-            <h2>{copy.home.regions.title}</h2>
-            <p>{copy.home.regions.body}</p>
-            <div className="city-list">
-              {copy.home.regions.cities.map((city) => <span key={city}>{city}</span>)}
-            </div>
-            <strong className="regions-note">{copy.home.regions.note}</strong>
-          </Reveal>
-        </div>
-      </section>
+      <FlagshipInitiative copy={copy} />
 
       <section className="latest-section section-paper">
         <div className="container">
@@ -341,6 +320,41 @@ function FinalCta({ copy }: { copy: CampaignContent }) {
   );
 }
 
+function FlagshipInitiative({ copy }: { copy: CampaignContent }) {
+  return (
+    <section id="technical-centres" className="technical-section section-dark anchor-section">
+      <div className="container">
+        <Reveal className="technical-heading">
+          <Eyebrow light>{copy.vision.flagshipLabel}</Eyebrow>
+          <h2>{copy.vision.flagshipTitle}</h2>
+          <p>{copy.vision.flagshipBody}</p>
+        </Reveal>
+        <Reveal className="technical-masterplan">
+          <CampaignImage
+            asset={copy.images.visionMasterplan}
+            fill
+            sizes="(max-width: 900px) 100vw, 1200px"
+          />
+          <span className="photo-label">{copy.participation.conceptCaption}</span>
+        </Reveal>
+        <div className="spec-grid">
+          {copy.vision.specs.map((spec, index) => (
+            <Reveal className="spec-item" key={spec.label} delay={index * 55}>
+              <strong>{spec.value}</strong>
+              <h3>{spec.label}</h3>
+              <p>{spec.detail}</p>
+            </Reveal>
+          ))}
+        </div>
+        <Reveal className="anchor-model">
+          <div className="anchor-number">U8</div>
+          <div><h3>{copy.vision.anchorTitle}</h3><p>{copy.vision.anchorBody}</p></div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
 export function VisionPage({ copy }: { copy: CampaignContent }) {
   return (
     <main id="main-content">
@@ -368,36 +382,7 @@ export function VisionPage({ copy }: { copy: CampaignContent }) {
         </div>
       </section>
 
-      <section id="technical-centres" className="technical-section section-dark anchor-section">
-        <div className="container">
-          <Reveal className="technical-heading">
-            <Eyebrow light>{copy.vision.flagshipLabel}</Eyebrow>
-            <h2>{copy.vision.flagshipTitle}</h2>
-            <p>{copy.vision.flagshipBody}</p>
-          </Reveal>
-          <Reveal className="technical-masterplan">
-            <CampaignImage
-              asset={copy.images.visionMasterplan}
-              fill
-              sizes="(max-width: 900px) 100vw, 1200px"
-            />
-            <span className="photo-label">{copy.participation.conceptCaption}</span>
-          </Reveal>
-          <div className="spec-grid">
-            {copy.vision.specs.map((spec, index) => (
-              <Reveal className="spec-item" key={spec.label} delay={index * 55}>
-                <strong>{spec.value}</strong>
-                <h3>{spec.label}</h3>
-                <p>{spec.detail}</p>
-              </Reveal>
-            ))}
-          </div>
-          <Reveal className="anchor-model">
-            <div className="anchor-number">U8</div>
-            <div><h3>{copy.vision.anchorTitle}</h3><p>{copy.vision.anchorBody}</p></div>
-          </Reveal>
-        </div>
-      </section>
+      <FlagshipInitiative copy={copy} />
 
       <section className="funding-section section-paper">
         <div className="container">
